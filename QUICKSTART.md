@@ -19,10 +19,10 @@ python3 scripts/generate_paper_spec_data.py
 ### 3. 训练模型
 ```bash
 # 单GPU训练
-python3 train_30_epochs_final.py
+python3 scripts/train_30_epochs_final.py
 
 # 多GPU训练（推荐）
-torchrun --nproc_per_node=5 train_joint_bert.py \
+torchrun --nproc_per_node=5 scripts/train_joint_bert.py \
   --num_epochs 30 \
   --batch_size 64 \
   --learning_rate 2e-05 \
@@ -56,10 +56,10 @@ python3 scripts/generate_paper_spec_data.py
 ### 3. Train Model
 ```bash
 # Single GPU
-python3 train_30_epochs_final.py
+python3 scripts/train_30_epochs_final.py
 
 # Multi-GPU (Recommended)
-torchrun --nproc_per_node=5 train_joint_bert.py \
+torchrun --nproc_per_node=5 scripts/train_joint_bert.py \
   --num_epochs 30 \
   --batch_size 64 \
   --learning_rate 2e-05 \

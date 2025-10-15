@@ -61,10 +61,10 @@ python3 scripts/generate_paper_spec_data.py
 
 ```bash
 # 单GPU训练
-python3 train_30_epochs_final.py
+python3 scripts/train_30_epochs_final.py
 
 # 多GPU分布式训练（推荐）
-torchrun --nproc_per_node=5 --nnodes=1 train_joint_bert.py \
+torchrun --nproc_per_node=5 --nnodes=1 scripts/train_joint_bert.py \
   --num_epochs 30 \
   --batch_size 64 \
   --learning_rate 2e-05 \
@@ -120,19 +120,20 @@ L_total = β_ft × L_MLM + (1 - β_ft) × L_InfoNCE
 
 ```
 OAI_BERT_finetuning/
-├── 🎯 核心训练脚本
+├── scripts/                           # 🎯 核心脚本目录
 │   ├── train_30_epochs_final.py       # 主训练脚本
 │   ├── train_joint_bert.py            # 联合训练实现
-│   └── train_with_monitoring.py       # 训练监控
-├── 📊 数据生成和处理
+│   ├── train_with_monitoring.py       # 训练监控
 │   ├── generate_paper_spec_data.py    # MLM和对比学习数据生成
-│   ├── joint_bert_model.py            # 联合训练模型定义
-│   ├── tokenizer_utils.py             # tokenizer工具
 │   └── create_enhanced_tokenizer.py   # 增强tokenizer创建
+├── 📊 模型和工具
+│   ├── joint_bert_model.py            # 联合训练模型定义
+│   └── tokenizer_utils.py             # tokenizer工具
 ├── 🗃️ 数据和资源
 │   ├── paper_spec_training_data/      # 训练数据
 │   ├── enhanced_communication_tokenizer/ # 增强tokenizer
 │   ├── knowledge_base/                # 代码知识库
+│   ├── pretrained_models/             # 预训练模型目录
 │   └── google-10000-english-no-swears.txt # 英文词典
 ├── 📋 输出和报告
 │   ├── final_30_epoch_output/         # 训练输出
@@ -140,6 +141,7 @@ OAI_BERT_finetuning/
 └── 📄 配置文档
     ├── README.md                      # 英文文档
     ├── README_CN.md                   # 中文文档
+    ├── QUICKSTART.md                  # 快速开始指南
     ├── LICENSE                        # MIT许可证
     └── requirements.txt               # 依赖配置
 ```
@@ -266,7 +268,7 @@ OAI_BERT_finetuning/
 ### 自定义训练参数
 
 ```bash
-python3 train_30_epochs_final.py \
+python3 scripts/train_30_epochs_final.py \
   --num_epochs 50 \
   --batch_size 128 \
   --learning_rate 1e-05 \
@@ -276,7 +278,7 @@ python3 train_30_epochs_final.py \
 ### 使用自定义数据集
 
 1. 准备您的代码数据文件
-2. 修改 `generate_paper_spec_data.py` 中的数据路径
+2. 修改 `scripts/generate_paper_spec_data.py` 中的数据路径
 3. 运行数据生成脚本
 4. 开始训练
 
@@ -301,7 +303,7 @@ outputs = model(**inputs)
 **Q: CUDA out of memory 错误**
 ```bash
 # 减小批次大小
-python3 train_30_epochs_final.py --batch_size 32
+python3 scripts/train_30_epochs_final.py --batch_size 32
 ```
 
 **Q: 多GPU训练报错**
@@ -314,7 +316,7 @@ export NCCL_IB_DISABLE=1
 **Q: tokenizer加载失败**
 ```bash
 # 重新生成tokenizer
-python3 create_enhanced_tokenizer.py
+python3 scripts/create_enhanced_tokenizer.py
 ```
 
 ---

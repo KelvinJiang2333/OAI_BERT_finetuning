@@ -61,10 +61,10 @@ python3 scripts/generate_paper_spec_data.py
 
 ```bash
 # Single GPU training
-python3 train_30_epochs_final.py
+python3 scripts/train_30_epochs_final.py
 
 # Multi-GPU distributed training (recommended)
-torchrun --nproc_per_node=5 --nnodes=1 train_joint_bert.py \
+torchrun --nproc_per_node=5 --nnodes=1 scripts/train_joint_bert.py \
   --num_epochs 30 \
   --batch_size 64 \
   --learning_rate 2e-05 \
@@ -120,19 +120,20 @@ where β_ft = 0.7
 
 ```
 OAI_BERT_finetuning/
-├── 🎯 Core Training Scripts
+├── scripts/                           # 🎯 Core Scripts Directory
 │   ├── train_30_epochs_final.py       # Main training script
 │   ├── train_joint_bert.py            # Joint training implementation
-│   └── train_with_monitoring.py       # Training with monitoring
-├── 📊 Data Processing
+│   ├── train_with_monitoring.py       # Training with monitoring
 │   ├── generate_paper_spec_data.py    # MLM and Contrastive Learning data generation
-│   ├── joint_bert_model.py            # Joint training model definition
-│   ├── tokenizer_utils.py             # Tokenizer utilities
 │   └── create_enhanced_tokenizer.py   # Enhanced tokenizer creation
+├── 📊 Models and Utilities
+│   ├── joint_bert_model.py            # Joint training model definition
+│   └── tokenizer_utils.py             # Tokenizer utilities
 ├── 🗃️ Data and Resources
 │   ├── paper_spec_training_data/      # Training data
 │   ├── enhanced_communication_tokenizer/ # Enhanced tokenizer
 │   ├── knowledge_base/                # Code knowledge base
+│   ├── pretrained_models/             # Pre-trained models directory
 │   └── google-10000-english-no-swears.txt # English dictionary
 ├── 📋 Outputs and Reports
 │   ├── final_30_epoch_output/         # Training outputs
@@ -140,6 +141,7 @@ OAI_BERT_finetuning/
 └── 📄 Documentation
     ├── README.md                      # English documentation
     ├── README_CN.md                   # Chinese documentation
+    ├── QUICKSTART.md                  # Quick start guide
     ├── LICENSE                        # MIT License
     └── requirements.txt               # Dependencies
 ```
