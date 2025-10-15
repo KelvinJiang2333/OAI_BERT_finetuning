@@ -1,0 +1,23 @@
+{
+  "paper_specification": {
+    "mlm_samples": 10285,
+    "positive_pairs": 26609,
+    "negative_pairs": 26609,
+    "total_contrastive_pairs": 53218
+  },
+  "mlm_config": {
+    "context_window": "3_preceding + 1_current + 3_subsequent",
+    "mask_ratio": 0.15,
+    "total_context_lines": 7
+  },
+  "contrastive_config": {
+    "positive_strategy": "word_pairs_within_same_line",
+    "negative_strategy": "code_words_with_general_domain_words",
+    "token_filtering": "remove_punctuation_and_symbols",
+    "min_token_length": 2
+  },
+  "joint_training": {
+    "beta_ft": 0.7,
+    "loss_function": "L_joint = β_ft * L_MLM + (1 - β_ft) * L_InfoNCE"
+  }
+}
