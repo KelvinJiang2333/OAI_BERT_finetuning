@@ -1,0 +1,23 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.20.0
+safetensors>=0.3.0
+
+# Data processing
+numpy>=1.19.0
+pandas>=1.1.0
+
+# Utilities
+tqdm>=4.50.0
+scikit-learn>=0.24.0
+
+# GPU monitoring
+pynvml>=11.0.0
+
+# Visualization (optional)
+matplotlib>=3.3.0
+
+# Development (optional)
+black>=21.0
+flake8>=3.9.0
+pytest>=6.2.0
