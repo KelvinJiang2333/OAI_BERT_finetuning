@@ -46,10 +46,16 @@ pip install -r requirements.txt
 
 ### Data Generation
 
+Generate complete training datasets (both MLM and Contrastive Learning):
+
 ```bash
-# Generate word-level contrastive learning dataset
-python3 generate_paper_spec_data.py
+# Generate MLM training data + Word-level contrastive learning dataset
+python3 scripts/generate_paper_spec_data.py
 ```
+
+**Generated datasets include:**
+- **MLM Data**: 10,285 samples with 7-line code context window (3 preceding + 1 current + 3 subsequent)
+- **Contrastive Learning Data**: 53,218 word pairs (26,609 positive + 26,609 negative)
 
 ### Training
 
@@ -119,8 +125,8 @@ OAI_BERT_finetuning/
 │   ├── train_joint_bert.py            # Joint training implementation
 │   └── train_with_monitoring.py       # Training with monitoring
 ├── 📊 Data Processing
-│   ├── generate_paper_spec_data.py    # Word-level data generation
-│   ├── joint_bert_model.py            # Model definition
+│   ├── generate_paper_spec_data.py    # MLM and Contrastive Learning data generation
+│   ├── joint_bert_model.py            # Joint training model definition
 │   ├── tokenizer_utils.py             # Tokenizer utilities
 │   └── create_enhanced_tokenizer.py   # Enhanced tokenizer creation
 ├── 🗃️ Data and Resources
@@ -195,6 +201,27 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Hugging Face Transformers](https://github.com/huggingface/transformers) for the BERT implementation
 - [PyTorch](https://pytorch.org/) for the deep learning framework
 - The open-source community for various tools and libraries
+
+## 🔍 Detailed Documentation
+
+### Data Generation Module
+
+**MLM Data Generation:**
+- **Context Window**: Extract 7-line context for each code line (3 preceding + 1 current + 3 subsequent)
+- **Masking Strategy**: Randomly mask 15% tokens (80% with [MASK], 10% random replacement, 10% unchanged)
+- **Sample Count**: 10,285 high-quality MLM training samples
+
+**Contrastive Learning Data Generation:**
+- **Word Extraction**: Use regex to extract valid words from code
+- **Positive Pairs**: Word-to-word pairing within the same code line (26,609 pairs)
+- **Negative Pairs**: Code words paired with common English vocabulary (26,609 pairs)
+- **Quality Control**: Automatically filter meaningless tokens and symbols
+
+### Model Training Module
+
+- **Joint Loss**: Combines MLM and contrastive learning losses with 70:30 ratio
+- **Distributed Training**: Multi-GPU parallel training with optimized resource utilization
+- **Real-time Monitoring**: GPU performance, power consumption, and training metrics tracking
 
 ## 📧 Contact
 

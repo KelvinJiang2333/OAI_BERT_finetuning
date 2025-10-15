@@ -7,9 +7,13 @@
 pip install -r requirements.txt
 ```
 
-### 2. 生成数据
+### 2. 生成训练数据
+生成MLM和对比学习两种训练数据：
+- MLM数据：10,285个样本（3前+1当前+3后=7行代码上下文）
+- 对比学习数据：53,218对词语样本（正负样本各26,609对）
+
 ```bash
-python3 generate_paper_spec_data.py
+python3 scripts/generate_paper_spec_data.py
 ```
 
 ### 3. 训练模型
@@ -40,9 +44,13 @@ cat final_training_report.md
 pip install -r requirements.txt
 ```
 
-### 2. Generate Data
+### 2. Generate Training Data
+Generate both MLM and Contrastive Learning datasets:
+- MLM Data: 10,285 samples (7-line code context: 3 preceding + 1 current + 3 subsequent)
+- Contrastive Learning: 53,218 word pairs (26,609 positive + 26,609 negative)
+
 ```bash
-python3 generate_paper_spec_data.py
+python3 scripts/generate_paper_spec_data.py
 ```
 
 ### 3. Train Model

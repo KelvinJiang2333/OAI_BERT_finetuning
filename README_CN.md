@@ -46,10 +46,16 @@ pip install -r requirements.txt
 
 ### 数据生成
 
+生成完整的训练数据集（包含MLM和对比学习两种类型）：
+
 ```bash
-# 生成词语级别对比学习数据集
-python3 generate_paper_spec_data.py
+# 生成MLM训练数据 + 词语级别对比学习数据集
+python3 scripts/generate_paper_spec_data.py
 ```
+
+**生成的数据包括：**
+- **MLM数据**：10,285个样本，采用7行代码上下文窗口（3前+1当前+3后）
+- **对比学习数据**：53,218对词语样本（正样本26,609对 + 负样本26,609对）
 
 ### 模型训练
 
@@ -119,8 +125,8 @@ OAI_BERT_finetuning/
 │   ├── train_joint_bert.py            # 联合训练实现
 │   └── train_with_monitoring.py       # 训练监控
 ├── 📊 数据生成和处理
-│   ├── generate_paper_spec_data.py    # 词语级别数据生成
-│   ├── joint_bert_model.py            # 模型定义
+│   ├── generate_paper_spec_data.py    # MLM和对比学习数据生成
+│   ├── joint_bert_model.py            # 联合训练模型定义
 │   ├── tokenizer_utils.py             # tokenizer工具
 │   └── create_enhanced_tokenizer.py   # 增强tokenizer创建
 ├── 🗃️ 数据和资源
@@ -212,9 +218,15 @@ OAI_BERT_finetuning/
 
 ### 数据生成模块
 
+**MLM数据生成：**
+- **上下文窗口**: 为每个代码行提取7行上下文（3前+1当前+3后）
+- **掩码策略**: 随机掩码15%的token，80%用[MASK]，10%随机替换，10%保持不变
+- **样本数量**: 10,285个高质量MLM训练样本
+
+**对比学习数据生成：**
 - **词语提取**: 使用正则表达式提取代码中的有效词语
-- **正样本生成**: 同一代码行内的词语两两配对
-- **负样本生成**: 代码词语与常用英文词汇配对
+- **正样本生成**: 同一代码行内的词语两两配对（26,609对）
+- **负样本生成**: 代码词语与常用英文词汇配对（26,609对）
 - **质量控制**: 自动过滤无意义的token和符号
 
 ### 模型训练模块
