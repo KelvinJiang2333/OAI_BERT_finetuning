@@ -1,0 +1,77 @@
+# 预训练模型：bert-base-uncased
+
+此目录用于存放 `bert-base-uncased` 预训练模型文件。
+
+由于原始模型文件较大（约440MB），它们**未被包含**在Git仓库中。在使用本项目前，请先根据以下指南手动下载所需文件。
+
+## 1. 下载说明
+
+- **模型名称**: `bert-base-uncased`
+- **下载来源**: [Hugging Face Model Hub](https://huggingface.co/bert-base-uncased/tree/main)
+
+## 2. 操作步骤
+
+1.  确保你当前位于 `pretrained_models/bert-base-uncased` 目录中。
+
+2.  从上面的 Hugging Face 链接中，**至少下载**以下几个关键文件，并将它们直接存放在当前目录下：
+    - `config.json` （模型配置文件）
+    - `pytorch_model.bin` （模型权重文件）
+    - `vocab.txt` （词汇表）
+    - `tokenizer.json` （分词器配置）
+    - `tokenizer_config.json` （分词器主配置）
+
+## 3. 最终目录结构
+
+下载完成后，你的 `bert-base-uncased` 目录结构应如下所示：
+
+```
+bert-base-uncased/
+├── README.md         (本说明文件)
+├── config.json
+├── pytorch_model.bin
+├── vocab.txt
+├── tokenizer.json
+└── tokenizer_config.json
+```
+
+现在，你可以返回项目主目录并开始运行训练或推理脚本了。
+
+---
+
+# Pre-trained Model: bert-base-uncased
+
+This directory is intended for storing the `bert-base-uncased` pre-trained model files.
+
+Due to the large size of the original model files (approx. 440MB), they are **not included** in the Git repository. Before using this project, please follow the guide below to download the required files manually.
+
+## 1. Download Information
+
+- **Model Name**: `bert-base-uncased`
+- **Download Source**: [Hugging Face Model Hub](https://huggingface.co/bert-base-uncased/tree/main)
+
+## 2. Steps
+
+1.  Ensure you are in the `pretrained_models/bert-base-uncased` directory.
+
+2.  From the Hugging Face link above, download **at least** the following key files and place them directly in this directory:
+    - `config.json` (Model configuration file)
+    - `pytorch_model.bin` (Model weights file)
+    - `vocab.txt` (Vocabulary file)
+    - `tokenizer.json` (Tokenizer configuration)
+    - `tokenizer_config.json` (Main tokenizer configuration)
+
+## 3. Final Directory Structure
+
+After downloading, your `bert-base-uncased` directory should look like this:
+
+```
+bert-base-uncased/
+├── README.md         (This instruction file)
+├── config.json
+├── pytorch_model.bin
+├── vocab.txt
+├── tokenizer.json
+└── tokenizer_config.json
+```
+
+You can now return to the project's root directory and start running the training or inference scripts.
